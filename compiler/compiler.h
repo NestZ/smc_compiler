@@ -24,6 +24,6 @@ class Compiler{
 
 		void compile(){
 			string pre_str = this->preprocessor.process(source_code);
-			cout << pre_str;
+			vector<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
 		}
 };

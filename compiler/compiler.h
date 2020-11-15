@@ -27,5 +27,6 @@ class Compiler{
 			queue<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
 			this->parser = AST(&token);
 			vector<AST::instr> ast_instr = *parser.parse();
+			this->semantic_analyzer.analyze(ast_instr);
 		}
 };

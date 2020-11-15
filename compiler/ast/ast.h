@@ -7,7 +7,7 @@ class AST{
 			string label;
 			string name;
 			Lexer::TokenType type;
-			vector<pair<string, Lexer::TokenType>> operand = vector<pair<string, Lexer::TokenType>>(3);
+			vector<pair<string, Lexer::TokenType>> operand;
 		}instr;
 		vector<instr> instructions;
 
@@ -23,8 +23,7 @@ class AST{
 			for(int i = 0;i < 3;i++){
 				if(this->lexical_tokens.empty())throw "Syntax Error!";
 				if(this->lexical_tokens.front().second != Lexer::TokenType::INT)throw "Syntax Error!";
-				cur_instruction.operand[i].first = this->lexical_tokens.front().first;
-				cur_instruction.operand[i].second = this->lexical_tokens.front().second;
+				cur_instruction.operand.push_back(make_pair(this->lexical_tokens.front().first, this->lexical_tokens.front().second));
 				this->lexical_tokens.pop();
 			}
 			return cur_instruction;
@@ -38,8 +37,7 @@ class AST{
 				if(i < 2 && this->lexical_tokens.front().second != Lexer::TokenType::INT)throw "Syntax Error!";
 				else if(i == 2 && this->lexical_tokens.front().second != Lexer::TokenType::INT &&
 								this->lexical_tokens.front().second != Lexer::TokenType::LABEL)throw "Syntax Error!";
-				cur_instruction.operand[i].first = this->lexical_tokens.front().first;
-				cur_instruction.operand[i].second = this->lexical_tokens.front().second;
+				cur_instruction.operand.push_back(make_pair(this->lexical_tokens.front().first, this->lexical_tokens.front().second));
 				this->lexical_tokens.pop();
 			}
 			return cur_instruction;
@@ -57,8 +55,7 @@ class AST{
 			for(int i = 0;i < 2;i++){
 				if(this->lexical_tokens.empty())throw "Syntax Error!";
 				if(this->lexical_tokens.front().second != Lexer::TokenType::INT)throw "Syntax Error!";
-				cur_instruction.operand[i].first = this->lexical_tokens.front().first;
-				cur_instruction.operand[i].second = this->lexical_tokens.front().second;
+				cur_instruction.operand.push_back(make_pair(this->lexical_tokens.front().first, this->lexical_tokens.front().second));
 				this->lexical_tokens.pop();
 			}
 			return cur_instruction;
@@ -70,8 +67,7 @@ class AST{
 			if(this->lexical_tokens.empty())throw "Syntax Error!";
 			if(this->lexical_tokens.front().second != Lexer::TokenType::INT &&
 					this->lexical_tokens.front().second != Lexer::TokenType::LABEL)throw "Syntax Error!";
-			cur_instruction.operand[0].first = this->lexical_tokens.front().first;
-			cur_instruction.operand[0].second = this->lexical_tokens.front().second;
+				cur_instruction.operand.push_back(make_pair(this->lexical_tokens.front().first, this->lexical_tokens.front().second));
 			this->lexical_tokens.pop();
 			return cur_instruction;
 		}

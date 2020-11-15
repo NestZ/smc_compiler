@@ -3,11 +3,21 @@
 #include "memory.h"
 
 class SMC{
-	public:
-		SMC(){}
+	private:
 		Compiler compiler;
 		Memory memory;
 		Register registers;
-		void run(){}
-		void reset(){}
+
+	public:
+		SMC(){}
+
+		void run(){
+			this->compiler.read_source_code();
+			this->compiler.compile();
+		}
+
+		void reset(){
+			this->memory.reset();
+			this->registers.reset();
+		}
 };

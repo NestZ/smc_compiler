@@ -50,8 +50,8 @@ class Lexer{
 		vector<pair<string, TokenType>> *tokenize(vector<string> &str){
 			this->lexical_tokens.clear();
 			for(string token : str){
-				if(token == "\n"){
-					this->lexical_tokens.push_back(make_pair("\\n", ENDL));
+				if(token == "\\n"){
+					this->lexical_tokens.push_back(make_pair(token, ENDL));
 					continue;
 				}
 				if(isNumber(token)){
@@ -76,8 +76,6 @@ class Lexer{
 					this->lexical_tokens.push_back(make_pair(token, LABEL));
 				}
 			}
-			for(pair<string, TokenType> p : this->lexical_tokens)
-				cout << p.first << ' ' << p.second << endl;
 			return &this->lexical_tokens;
 		}
 };

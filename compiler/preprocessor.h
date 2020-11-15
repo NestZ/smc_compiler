@@ -10,7 +10,7 @@ class Preprocessor{
 				istringstream iss(line);
 				string word;
 				while(iss >> word)this->process_str.push_back(word);
-				this->process_str.push_back("\n");
+				this->process_str.push_back("\\n");
 			}
 			return &this->process_str;
 		}

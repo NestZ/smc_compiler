@@ -98,11 +98,6 @@ class AST{
 
 		vector<instr> *parse(){
 			while(this->lexical_tokens.front().second == Lexer::TokenType::ENDL)this->lexical_tokens.pop();
-			//while(!this->lexical_tokens.empty()){
-				//pair<string, Lexer::TokenType> p = this->lexical_tokens.front();
-				//this->lexical_tokens.pop();
-				//cout << p.first << ' ' << p.second << endl;
-			//}
 			while(!this->lexical_tokens.empty()){
 				pair<string, Lexer::TokenType> cur_token = this->lexical_tokens.front();
 				if(cur_token.second == Lexer::TokenType::INT){

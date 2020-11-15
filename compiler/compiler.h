@@ -23,7 +23,7 @@ class Compiler{
 		}
 
 		void compile(){
-			string pre_str = this->preprocessor.process(source_code);
+			vector<string> pre_str = *(this->preprocessor.process(source_code));
 			vector<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
 		}
 };

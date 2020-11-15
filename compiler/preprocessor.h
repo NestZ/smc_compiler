@@ -1,13 +1,17 @@
 class Preprocessor{
+	private:
+		vector<string> process_str;
+
 	public:
 		Preprocessor(){}
 
-		string process(vector<string> &source_code){
-			string res = "";
-			for(string s : source_code){
-				res += s;
-				res += "\n";
+		vector<string> *process(vector<string> &source_code){
+			for(string line : source_code){
+				istringstream iss(line);
+				string word;
+				while(iss >> word)this->process_str.push_back(word);
+				this->process_str.push_back("\n");
 			}
-			return res;
+			return &this->process_str;
 		}
 };

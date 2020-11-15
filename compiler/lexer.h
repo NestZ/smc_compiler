@@ -15,6 +15,7 @@ class Lexer{
 			F_TYPE,
 			INT,
 			LABEL,
+			ENDL
 		};
 		vector<pair<string, TokenType>> lexical_tokens;
 
@@ -46,11 +47,13 @@ class Lexer{
 			return true;
 		}
 
-		vector<pair<string, TokenType>> *tokenize(string &str){
+		vector<pair<string, TokenType>> *tokenize(vector<string> &str){
 			this->lexical_tokens.clear();
-			istringstream iss(str);
-			string token;
-			while(iss >> token){
+			for(string token : str){
+				if(token == "\n"){
+					this->lexical_tokens.push_back(make_pair("\\n", ENDL));
+					continue;
+				}
 				if(isNumber(token)){
 					this->lexical_tokens.push_back(make_pair(token, INT));
 				}
@@ -73,6 +76,8 @@ class Lexer{
 					this->lexical_tokens.push_back(make_pair(token, LABEL));
 				}
 			}
+			for(pair<string, TokenType> p : this->lexical_tokens)
+				cout << p.first << ' ' << p.second << endl;
 			return &this->lexical_tokens;
 		}
 };

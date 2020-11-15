@@ -10,9 +10,4 @@ class Simulator{
 		I_Type i_type;
 		O_Type o_type;
 		
-		void run(){
-
-		}
-		void reset(){}
-		
 };

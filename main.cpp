@@ -14,6 +14,12 @@ int main(int argc, char *argv[]){
 		return 1;
 	}
 
-	SMC smc;
-	smc.run();
+	try{
+		SMC smc;
+		smc.run();
+	}
+	catch(const char *err){
+		cout << "Exception: " << err << endl;
+		return 1;
+	}
 }

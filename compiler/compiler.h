@@ -1,6 +1,6 @@
 #include "preprocessor.h"
 #include "lexer.h"
-#include "parser.h"
+#include "./ast/ast.h"
 #include "semantic_analyzer.h"
 #include "interpreter.h"
 
@@ -8,7 +8,7 @@ class Compiler{
 	private:
 		Preprocessor preprocessor;
 		Lexer lexer;
-		Parser parser;
+		AST parser;
 		SemanticAnalyzer semantic_analyzer;
 		Interpreter interpreter;
 		vector<string> source_code;
@@ -24,6 +24,8 @@ class Compiler{
 
 		void compile(){
 			vector<string> pre_str = *(this->preprocessor.process(source_code));
-			vector<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
+			queue<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
+			this->parser = AST(&token);
+			vector<AST::instr> ast_instr = *parser.parse();
 		}
 };

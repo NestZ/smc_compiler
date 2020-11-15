@@ -17,7 +17,7 @@ class Lexer{
 			LABEL,
 			ENDL
 		};
-		vector<pair<string, TokenType>> lexical_tokens;
+		queue<pair<string, TokenType>> lexical_tokens;
 
 		Lexer(){
 			string r_type[] = {"add", "nand"};
@@ -47,33 +47,34 @@ class Lexer{
 			return true;
 		}
 
-		vector<pair<string, TokenType>> *tokenize(vector<string> &str){
-			this->lexical_tokens.clear();
+		queue<pair<string, TokenType>> *tokenize(vector<string> &str){
+			queue<pair<string, TokenType>> empty;
+			swap(empty, this->lexical_tokens);
 			for(string token : str){
 				if(token == "\\n"){
-					this->lexical_tokens.push_back(make_pair(token, ENDL));
+					this->lexical_tokens.push(make_pair(token, ENDL));
 					continue;
 				}
 				if(isNumber(token)){
-					this->lexical_tokens.push_back(make_pair(token, INT));
+					this->lexical_tokens.push(make_pair(token, INT));
 				}
 				else if(this->r_types.count(token) > 0){
-					this->lexical_tokens.push_back(make_pair(token, R_TYPE));
+					this->lexical_tokens.push(make_pair(token, R_TYPE));
 				}
 				else if(this->i_types.count(token) > 0){
-					this->lexical_tokens.push_back(make_pair(token, I_TYPE));
+					this->lexical_tokens.push(make_pair(token, I_TYPE));
 				}
 				else if(this->o_types.count(token) > 0){
-					this->lexical_tokens.push_back(make_pair(token, O_TYPE));
+					this->lexical_tokens.push(make_pair(token, O_TYPE));
 				}
 				else if(this->j_types.count(token) > 0){
-					this->lexical_tokens.push_back(make_pair(token, J_TYPE));
+					this->lexical_tokens.push(make_pair(token, J_TYPE));
 				}
 				else if(this->f_types.count(token) > 0){
-					this->lexical_tokens.push_back(make_pair(token, F_TYPE));
+					this->lexical_tokens.push(make_pair(token, F_TYPE));
 				}
 				else{
-					this->lexical_tokens.push_back(make_pair(token, LABEL));
+					this->lexical_tokens.push(make_pair(token, LABEL));
 				}
 			}
 			return &this->lexical_tokens;

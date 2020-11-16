@@ -28,9 +28,6 @@ class Compiler{
 			this->parser = AST(&token);
 			vector<AST::instr> ast_instr = *parser.parse();
 			this->semantic_analyzer.analyze(ast_instr);
-			for(AST::instr instr : ast_instr){
-				cout << instr.type << ' ' << instr.name << endl;
-			}
 			return this->interpreter.interpret(ast_instr);
 		}
 };

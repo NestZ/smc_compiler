@@ -15,8 +15,8 @@ class SMC{
 			this->reset();
 			this->compiler.read_source_code();
 			vector<int> binary = *this->compiler.compile();
-			//for(int i : binary)
-				//cout << i << endl;
+			for(int i : binary)
+				cout << i << endl;
 		}
 
 		void reset(){

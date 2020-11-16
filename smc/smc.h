@@ -4,14 +4,21 @@
 #include "./simulator/simulator.h"
 
 class SMC{
-	public:
-		SMC(){}
+	private:
 		Compiler compiler;
 		Memory memory;
 		Register registers;
-		Simulator simulator;
 
-		void run(){}
-		void reset(){}
-		
+	public:
+		SMC(){}
+
+		void run(){
+			this->compiler.read_source_code();
+			this->compiler.compile();
+		}
+
+		void reset(){
+			this->memory.reset();
+			this->registers.reset();
+		}
 };

@@ -55,14 +55,14 @@ class Interpreter{
 			cur_bin |= (stoi(instr.operand[1].first) << 16);
 			if(instr.operand[2].second == Lexer::TokenType::LABEL){
 				int symbolic_line = label[instr.operand[2].first];
-				if(!isInt16(symbolic_line))throw "too large offSet";
+				if(!isInt16(symbolic_line))throw "Too large offSet";
 				if(instr.name == "beq")
 					cur_bin |= to_int16(symbolic_line - pc - 1);
 				else cur_bin |= to_int16(symbolic_line);
 			}
 			else if(instr.operand[2].second == Lexer::TokenType::INT){
 				int offSet = stoi(instr.operand[2].first);
-				if(!isInt16(offSet))throw "too large offSet!";
+				if(!isInt16(offSet))throw "Too large offSet!";
 				cur_bin |= to_int16(offSet);
 			}
 			return cur_bin;

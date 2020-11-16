@@ -1,6 +1,3 @@
-#include "../compiler/compiler.h"
-#include "../smc/register.h"
-
 class J_Type{
   public:
     void jalr(int rs, int rd, int pc, Register reg){

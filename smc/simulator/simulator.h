@@ -1,5 +1,3 @@
-#include "../compiler/compiler.h"
-#include <string>
 #include "i_type.h"
 #include "r_type.h"
 #include "j_type.h"
@@ -31,7 +29,7 @@ void Simulator:: simulate(Register smc_reg,Memory smc_mem,vector<int> instructio
                 r_type.add((inst >> 19)%8,(inst>>16)%8,inst%8,smc_reg);
             break;
             case 1:
-                r_type.nand();
+                r_type.nand((inst >> 19)%8,(inst>>16)%8,inst%8,smc_reg);
             break;
             case 2:
                 //goItype
@@ -43,7 +41,7 @@ void Simulator:: simulate(Register smc_reg,Memory smc_mem,vector<int> instructio
                 //goItype
             break;
             case 5:
-                j_type.jalr();
+                j_type.jalr((inst >> 19)%8,(inst>>16)%8,pc,smc_reg);
             break;
             case 6:
                 running = false;

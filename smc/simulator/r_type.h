@@ -1,6 +1,3 @@
-#include "../../compiler/compiler.h"
-#include "../smc/register.h"
-
 class R_Type{
   public:
     void add(int rs, int rt, int rd , Register reg){

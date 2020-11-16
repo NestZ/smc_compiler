@@ -7,7 +7,7 @@ class Simulator{
 	public:
 		Simulator(){}
 		R_Type r_type = new R_Type();
-		I_Type i_type = new I_type();
+		I_Type i_type = new I_Type();
 		O_Type o_type = new o_type();
 		void simulate(Register smc_reg,Memory smc_mem,Instruction[] instruction_set,int mem_start,int mem_stop);
 };

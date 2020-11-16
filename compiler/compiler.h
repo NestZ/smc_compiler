@@ -22,11 +22,12 @@ class Compiler{
 				this->source_code.push_back(temp);
 		}
 
-		void compile(){
+		vector<int> *compile(){
 			vector<string> pre_str = *(this->preprocessor.process(source_code));
 			queue<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
 			this->parser = AST(&token);
 			vector<AST::instr> ast_instr = *parser.parse();
 			this->semantic_analyzer.analyze(ast_instr);
+			return this->interpreter.interpret(ast_instr);
 		}
 };

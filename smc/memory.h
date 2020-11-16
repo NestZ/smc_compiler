@@ -7,7 +7,6 @@ class Memory{
 		}
 		void set(int memory_no, int value){
 			memory_lst[memory_no] = value;
-			cout << memory_lst[memory_no];
 		}
 		int get(int memory_no){
 			return memory_lst[memory_no];

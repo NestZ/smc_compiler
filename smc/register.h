@@ -8,7 +8,6 @@ class Register{
 		void set(int register_no, int value){
 			if(register_no == 0)return;
 			this->register_lst[register_no] = value;
-			cout << this->register_lst[register_no] << endl;
 		}
 		int get(int register_no){
 			return register_lst[register_no];

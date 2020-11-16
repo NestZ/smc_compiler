@@ -2,8 +2,12 @@ class Register{
 	public:
 		//TODO add dynamic size
 		Register(){}
-		void reset(){}
-		void set(int register_no, int value){}
+		void reset(){
+			register_lst.clear();
+		}
+		void set(int register_no, int value){
+			register_lst.at(register_no) = value;
+		}
 		int get(int register_no){
 			return register_lst[register_no];
 		}

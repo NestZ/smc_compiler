@@ -8,6 +8,7 @@ class SMC{
 		Compiler compiler;
 		Memory memory;
 		Register registers;
+		Simulator simulator;
 
 	public:
 		SMC(){}
@@ -16,8 +17,8 @@ class SMC{
 			this->reset();
 			this->compiler.read_source_code();
 			vector<int> binary = *this->compiler.compile();
-			for(int i : binary)
-				cout << i << endl;
+			simulator.simulate(registers,memory,binary,0,8);
+			
 		}
 
 		void reset(){

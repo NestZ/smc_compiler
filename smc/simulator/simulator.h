@@ -12,20 +12,23 @@ class Simulator{
 		I_Type i_type;
         J_Type j_type;
 		O_Type o_type;
-		void simulate(Register smc_reg,Memory smc_mem,Instruction[] instruction_set,int mem_start,int mem_stop);
+		void simulate(Register smc_reg,Memory smc_mem,vector<int> instruction_set,int mem_start,int mem_stop);
 };
 
-void simulate(Register smc_reg,Memory smc_mem,Instruction[] instruction_set,int mem_start,int mem_stop){
+void Simulator:: simulate(Register smc_reg,Memory smc_mem,vector<int> instruction_set,int mem_start,int mem_stop){
 	int pc = mem_start;
 	int total_instruction = 0;
-	Instruction inst;
+	int inst;
     bool running = true;
+    int temp_for_op = 0;
 	while(running){
 		inst = instruction_set[pc];
+        temp_for_op = inst >> 22;
+        temp_for_op = temp_for_op%8;
 
 		switch(temp_for_op){
             case 0:
-                r_type.add();
+                r_type.add((inst >> 19)%8,(inst>>16)%8,inst%8,smc_reg);
             break;
             case 1:
                 r_type.nand();

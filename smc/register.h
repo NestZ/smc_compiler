@@ -6,7 +6,9 @@ class Register{
 			register_lst.clear();
 		}
 		void set(int register_no, int value){
-			register_lst.at(register_no) = value;
+			if(register_no == 0)return;
+			this->register_lst[register_no] = value;
+			cout << this->register_lst[register_no] << endl;
 		}
 		int get(int register_no){
 			return register_lst[register_no];

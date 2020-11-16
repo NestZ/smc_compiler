@@ -5,7 +5,7 @@ class Register{
 		void reset(){}
 		void set(int register_no, int value){}
 		int get(int register_no){
-			return register_lst.at(register_no);
+			return register_lst[register_no];
 		}
 	private:
 		const int MAX_REGISTER_SIZE = 8;

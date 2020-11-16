@@ -1,15 +1,16 @@
-#include "../compiler/compiler.h"
+#include "../../compiler/compiler.h"
 
 class R_Type{
   public:
-    void add(int32_t rs, int32_t rt, int32_t rd , Register reg){
+    void add(int rs, int rt, int rd , Register reg){
       int value;
       value = reg.get(rs) + reg.get(rt);
-      reg.set(rd,reg.get(rs) + reg.get(rt));
+      reg.set(rd,value);
     } 
 
-    int nand(int32_t rs, int32_t rt, int32_t rd , Register reg){
+    void nand(int rs, int rt, int rd , Register reg){
       int value;
-      value = (reg.get(rs)) & (reg.get(rt));
+      value =  ~(reg.get(rs) & reg.get(rt));
+      reg.set(rd,value);
     }
 };

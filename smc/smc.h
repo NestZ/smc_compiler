@@ -12,8 +12,11 @@ class SMC{
 		SMC(){}
 
 		void run(){
+			this->reset();
 			this->compiler.read_source_code();
-			this->compiler.compile();
+			vector<int> binary = *this->compiler.compile();
+			//for(int i : binary)
+				//cout << i << endl;
 		}
 
 		void reset(){

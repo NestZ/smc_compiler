@@ -62,7 +62,7 @@ class AST{
 		}
 
 		instr parse_f(){
-			instr cur_instruction = {"null", this->lexical_tokens.front().first, Lexer::TokenType::J_TYPE};
+			instr cur_instruction = {"null", this->lexical_tokens.front().first, Lexer::TokenType::F_TYPE};
 			this->lexical_tokens.pop();
 			if(this->lexical_tokens.empty())throw "Syntax Error!";
 			if(this->lexical_tokens.front().second != Lexer::TokenType::INT &&

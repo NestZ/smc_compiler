@@ -14,6 +14,7 @@ class Compiler{
 		vector<string> source_code;
 
 	public:
+		vector<AST::instr> ast_instr;
 		Compiler(){}
 
 		void read_source_code(){
@@ -26,7 +27,7 @@ class Compiler{
 			vector<string> pre_str = *(this->preprocessor.process(source_code));
 			queue<pair<string, Lexer::TokenType>> token = *lexer.tokenize(pre_str);
 			this->parser = AST(&token);
-			vector<AST::instr> ast_instr = *parser.parse();
+			this->ast_instr = *parser.parse();
 			this->semantic_analyzer.analyze(ast_instr);
 			return this->interpreter.interpret(ast_instr);
 		}

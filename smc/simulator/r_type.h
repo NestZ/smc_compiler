@@ -1,4 +1,5 @@
 #include "../../compiler/compiler.h"
+#include "../smc/register.h"
 
 class R_Type{
   public:

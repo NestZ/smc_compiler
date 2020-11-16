@@ -10,10 +10,14 @@ class Simulator{
 		I_Type i_type;
         J_Type j_type;
 		O_Type o_type;
-		void simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruction_set,int mem_start,int mem_stop);
+		void simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruction_set,vector<AST::instr> complier,int mem_start,int mem_stop);
 };
 
-void Simulator:: simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruction_set,int mem_start,int mem_stop){
+void Simulator:: simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruction_set,vector<AST::instr> complier,int mem_start,int mem_stop){
+    for(int i = 0 ; i < instruction_set.size() ;i++){
+        smc_mem.set(i,instruction_set[i]);
+        //(complier[i].type == Lexer::TokenType::F_TYPE)
+    }
 	int pc = mem_start;
 	int total_instruction = 0;
     bool running = true;
@@ -29,7 +33,9 @@ void Simulator:: simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruct
 		int inst = instruction_set[pc];
         temp_for_op = inst >> 22;
         temp_for_op = temp_for_op%8;
-
+        if(complier[pc].type == Lexer::TokenType::F_TYPE){
+            continue;
+        }
 		switch(temp_for_op){
             case 0:
                 r_type.add((inst >> 19)%8,(inst>>16)%8,inst%8,&smc_reg);

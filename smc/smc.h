@@ -17,7 +17,7 @@ class SMC{
 			this->reset();
 			this->compiler.read_source_code();
 			vector<int> binary = *this->compiler.compile();
-			simulator.simulate(registers, memory ,binary, 0, binary.size());
+			simulator.simulate(registers, memory ,binary,compiler.ast_instr, 0, binary.size());
 		}
 
 		void reset(){

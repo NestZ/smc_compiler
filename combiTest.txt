@@ -1,0 +1,45 @@
+lw 0 1 n 
+lw 0 2 41  
+lw 0 6 39 
+jalr 6 7     
+halt
+start sw 5 7 44
+lw 0 6 42 
+add 5 6 5 
+sw 5 1 44 
+add 5 6 5 
+sw 5 2 44 
+add 5 6 5   
+sw 5 4 44 
+add 5 6 5
+beq 0 2 L2 
+beq 1 2 L2 
+lw 0 6 43 
+add 1 6 1 
+lw 0 6 39
+jalr 6 7     
+add 0 3 4
+lw 0 6 43 
+add 2 6 2 
+lw 0 6 39 
+jalr 6 7
+add 3 4 3 
+beq 0 0 L3 
+L2 add 0 6 3 
+beq 0 0 L3 
+L3 lw 0 6 43 
+add 5 6 5 
+lw 5 4 44 
+add 5 6 5  
+lw 5 2 44
+add 5 6 5     
+lw 5 1 44
+add 5 6 5  
+lw 5 7 44
+jalr 7 6 
+stAddr .fill start      
+n .fill 8           
+r .fill 5       
+pos1 .fill 1 
+neg1 .fill -1       
+stack .fill 0 

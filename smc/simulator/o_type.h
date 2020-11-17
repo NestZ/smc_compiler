@@ -1,3 +1,0 @@
-class O_Type{
-  
-};

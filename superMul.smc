@@ -1,0 +1,34 @@
+start add 0 0 1
+lw 0 2 mcand
+lw 0 3 mplier
+lw 0 4 minus
+new add 3 0 7
+lw 0 5 bitLShift
+lw 0 6 zero
+next beq 6 5 go
+add 7 7 7
+add 5 4 5
+beq 0 0 next
+go lw 0 6 james
+nand 6 7 7
+nand 7 7 7
+beq 6 7 plus
+beq 0 0 exit
+plus add 2 1 1
+exit add 2 2 2
+lw 0 5 bitLShift
+add 5 4 5
+sw 0 5 bitLShift
+beq 0 5 real_exit
+beq 0 0 new
+noop
+real_exit halt
+james .fill -2147483648
+bitLShift .fill 31
+one .fill 1
+sam .fill 31
+zero .fill 0
+mcand .fill 55000
+mplier .fill 10000
+stAddr .fill start
+minus .fill -1

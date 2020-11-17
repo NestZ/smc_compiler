@@ -1,8 +1,17 @@
 #include "i_type.h"
 #include "r_type.h"
 #include "j_type.h"
+#define NUMMEMORY 65536 /* maximum number of words in memory */
+#define NUMREGS 8 /* number of machine registers */
 
 class Simulator{
+    typedef struct stateStruct {
+    int pc;
+    int mem[NUMMEMORY];
+    int reg[NUMREGS];
+    int numMemory;
+} stateType;
+
 	public:
 		Simulator(){}
 		R_Type r_type;
@@ -12,6 +21,7 @@ class Simulator{
 };
 
 void Simulator:: simulate(Register &smc_reg,Memory &smc_mem,vector<int> instruction_set,vector<AST::instr> complier,int mem_start,int mem_stop){
+    stateType state;
     for(int i = 0 ; i < instruction_set.size() ;i++){
         smc_mem.set(i,instruction_set[i]);
         //(complier[i].type == Lexer::TokenType::F_TYPE)

@@ -1,12 +1,14 @@
 start add 0 0 1
 lw 0 2 mcand
 lw 0 3 mplier
-next beq 3 0 end
+lw 0 4 minus
+next beq 3 0 4
 add 2 1 1
-add 3 -1 3
+add 3 4 3
 beq 0 0 next
+noop
 end halt
-
-mcand .fill 3
-mplier .fill 5
+mcand .fill 10000
+mplier .fill 20000
 stAddr .fill start
+minus .fill -1
